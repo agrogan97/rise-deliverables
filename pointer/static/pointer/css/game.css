@@ -1,0 +1,28 @@
+html {
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin: 0px;
+    padding: 0px;
+    background-color: rgba(0, 0, 0, 1.0);
+}
+
+canvas {
+    margin: 0px;
+    padding: 0px;
+}
+
+.gameCanvas {
+    position: absolute;
+    z-index : -100;
+    margin: 0px;
+    padding: 0px;
+}

@@ -1,0 +1,78 @@
+body {
+    padding: 0px;
+    margin: 0px;
+}
+
+
+.headingBox {
+    display: flex;
+    flex-direction: column;
+    height: 7vw;
+    align-items: stretch;
+    background-color: #2b4169;
+    margin: 0px;
+    padding: 0px;
+}
+
+.effugiumLogoDiv {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding: 0px;
+    margin: 0px;
+}
+
+.effugiumLogo {
+    position: absolute;
+    top: -1vw;
+    color: #d1d3d4;
+    font-size: 3vw;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.subHeading {
+    position: absolute;
+    top: 3vw;
+    color: #fff;
+    font-size: 1.5vw;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.riseLogo {
+    height: 100%;
+    width: auto;
+}
+
+.bodyBox {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+
+.mainText {
+    font-size: 1.5vh;
+    font-family: 'Montserrat', sans-serif;
+    padding: 5%;
+}
+
+.btnDiv {
+    display: flex;
+    justify-content: center;
+    height: 6vw;
+    padding-top: 1vh;
+}
+
+.buttonBox{
+    width: 10%;
+    height: 100%;
+    background-color: #ffcb04;
+    color: #2b4169;
+    font-size: 2vw;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 0.5vw;
+    border: none;
+}
+
+.buttonBox:hover {
+    transform: scale(1.2);
+}

@@ -1,0 +1,158 @@
+<!-- LOADING -->
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>Effugium</title>
+</head>
+<body>
+    {% load static %}
+</body>
+  
+    <!-- SCRIPTS -->
+    <script type="text/javascript">window.CSRF_TOKEN = "{{ csrf_token }}";</script>
+    <script>
+        METAPARAMS = {
+            IP:"{{ BASE_IP }}",
+            BASEPATH: "/static/effugium/staging/",
+            ENV: "staging"
+        }
+    </script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/lib/external/jquery-1.11.0.min.js' %}" ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/lib/external/jwerty.js' %}"            ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/lib/external/raphael.js' %}"           ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/lib/external/sprintf.min.js' %}"       ></script>
+
+    <script type="application/javascript" src="{% static 'effugium/staging/js/lib/default/missing.js' %}"            ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/lib/default/subjects.js' %}"           ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/lib/default/text.js' %}"               ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/lib/default/time.js' %}"               ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/lib/default/web.js' %}"                ></script>
+
+    <script type="application/javascript" src="{% static 'effugium/staging/js/lib/control/clock.js' %}"              ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/lib/control/countdown.js' %}"          ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/lib/control/screen.js' %}"             ></script>
+
+    <script type="application/javascript" src="{% static 'effugium/staging/js/lib/files/files.js' %}"                ></script>
+
+    <script type="application/javascript" src="{% static 'effugium/staging/js/lib/graphics/basic.js' %}"             ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/lib/graphics/fixation.js' %}"          ></script>
+
+    <script type="application/javascript" src="{% static 'effugium/staging/js/lib/matlab/constants.js' %}"           ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/lib/matlab/create.js' %}"              ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/lib/matlab/normal.js' %}"              ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/lib/matlab/operator1vi.js' %}"         ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/lib/matlab/operator1vv.js' %}"         ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/lib/matlab/operator2vi.js' %}"         ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/lib/matlab/operator2vv.js' %}"         ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/lib/matlab/random.js' %}"              ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/lib/matlab/size.js' %}"                ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/lib/matlab/translate.js' %}"           ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/lib/matlab/vector.js' %}"              ></script>
+
+    <script type="application/javascript" src="{% static 'effugium/staging/js/expt/expt_load.js' %}"       ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/expt/expt_hide.js' %}"       ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/expt/expt_launcher.js' %}"   ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/expt/expt_parameters.js' %}" ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/expt/expt_remove.js' %}"     ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/expt/expt_response.js' %}"   ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/expt/expt_run.js' %}"        ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/expt/expt_show.js' %}"       ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/expt/expt_update.js' %}"     ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/expt/expt_grid.js' %}"       ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/expt/expt_dataHandler.js' %}" ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/expt/expt_lateStageParams.js' %}" ></script>
+    <script type="application/javascript" src="{% static 'effugium/staging/js/expt/expt_experiment.js' %}" ></script>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="{% static 'effugium/staging/css/rise_styles.css' %}" rel="stylesheet" type="text/css" media="screen" />
+
+
+    <!-- WEBSITE -->
+    <script type="text/javascript">
+
+    if (window.location.href.indexOf("?") > -1) {
+        participant_RISE = getRiseUrlParams().id || '';
+    } else {
+        participant_RISE = '';
+    }
+
+    if (getRiseUrlParams().prolific == 'true') {
+        isRise = false
+    } else {
+        isRise = true
+    }
+
+    startedexperiment  = false;
+    finishedexperiment = false;
+    participant_task = "Games - RISE";
+
+    document.write('\
+        <!DOCTYPE html>\
+        <html>\
+            <head>\
+            <title>'+participant_task+'</title>\
+            </head>\
+            <body>\
+                <div id="webbodyDiv"></div>\
+            </body>\
+        </html>\
+        ');
+  
+    device_type = detectDevice();
+    PPT_GO = undefined;
+    goWebsite(html_validating_RISE);
+    validate();
+    function checkValidity() {
+        if (PPT_GO) {
+            if (device_type.mobile==true || device_type.largeMobile==true) {
+                    mobile = 1; 
+                    isRise ? goWebsite(html_instructions_m_RISE_styled) : goWebsite(html_instructions_m)
+                    // clearInterval(goInterval);
+                } else {
+                    mobile = 0;
+                    isRise ? goWebsite(html_instructions_RISE_styled) : goWebsite(html_instructions)
+                    // clearInterval(goInterval);
+            }
+        } else {
+            goWebsite(html_invalidlink);
+        }
+    }
+
+    setTimeout(checkValidity, 1500);
+  
+    // Check regularly if client has internet connection and if internet it lost then cache the current state
+    setInterval(function() {
+        if (!window.navigator.onLine){
+            cacheState();
+        }
+    }, 1000)
+
+    function detectDevice(){
+        return {
+            "desktop" : !/Mobi/i.test(navigator.userAgent),
+            "mobile" : /Mobi/i.test(navigator.userAgent) || navigator.maxTouchPoints > 0,
+            "largeMobile" : /iPad/.test(navigator.userAgent)
+        }
+    }
+
+    const btnInterval = setInterval(function(){
+        if (document.getElementById("startButton") == null){
+            clearInterval(btnInterval);
+        } else {
+            document.getElementById("startButton").addEventListener("click", function(e) {
+            this.setAttribute('disabled', 'disabled');
+            clearInterval(btnInterval)
+            });
+        }
+    }, 100)
+    
+    </script>
+
+
+    
+
+    

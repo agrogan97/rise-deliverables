@@ -1,0 +1,58 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- TITLE -->
+<div class="headingBox">
+    <!-- With RISE logo in the top left and Effugium title in the centre -->
+    <div class="effugiumLogoDiv">
+        <h1 class="effugiumLogo"><i>Roomworld</i></h1>
+        <h4 class="subHeading">Instructions</h4>
+    </div>
+</div>
+
+<!-- BODY -->
+<div class="bodyBox">
+    <p class="mainText"> 
+        <br>
+        Welcome to Roomworld! <br>
+        <br>
+        Here, you will play 92 short rounds that will take you 45 to 60 minutes to complete in total. Each round is a set of rooms on a different floor.<br>
+        <br>
+        You are challenged to move through the rooms to get to the gift. Every fifth round will be a Challenge Round, slightly more difficult than the ones before.
+        <br>
+        To navigate through each round, press the arrow buttons &#10145; &#11015; 	&#11014; &#11013; on your screen. <br>
+        <br>
+        If you're unsure how to solve a round, you have two options: <br>
+        <br>
+        You can try to solve the round again. To do this, press <b>restart round</b>. This will restart the same round. You can do this up to three times on a regular round, but can't do it on a Challenge Round. <br>
+        <br>
+        You can also give up and skip to the next round. To do this, press <b>skip round</b>. This will take you to the next round. <br>
+        <br>
+        <br>
+        You can only complete Roomworld once, so make sure to give it your full attention. Closing the browser and relaunching the game will resume your progress.<br>
+        <br>
+        Find a quiet place with a good internet connection and turn off your notifications. If you find in the first couple of rounds that your connection isn't good enough, you can stop playing and come back later.<br> 
+        <br>
+        Remember: this game is just one part of the Rise Challenge.<br>
+         All of the tasks you've completed count together to form a whole picture of you as an applicant throughout the Rise Challenge, so don't worry if you don't solve a round.<br> 
+        <br>
+        Finally, we strongly recommend playing with your phone rotated to <b>horizontal mode</b>. <span id="detectHorizontal"></span>
+    </p>
+</div>
+
+<div class="btnDiv">
+    <button class="buttonBox"
+            type="button"
+            onClick="startLoad(); goWebsite(html_load)"
+            id="startButton"><b><i>Start</i></b>
+    </button> 
+</div>
+
+<script>
+    document.getElementById("startButton").addEventListener("click", function(e) {
+        console.log("Disabled button");
+        this.attr('disabled', 'disabled');
+    });
+</script>
+
+
+

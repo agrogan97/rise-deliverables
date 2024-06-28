@@ -1,0 +1,181 @@
+html {
+    max-width: 100%;
+    overflow-x: hidden;
+    /* overflow-y: hidden; */
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    max-width: 100%;
+    background-color: rgb(255, 255, 255);
+    overflow-x: hidden;
+    /* overflow-y: scroll; */
+    z-index: 100;
+}
+
+a {
+    color: #000000;
+    text-decoration: none;
+}
+
+a:hover {
+    color:#000000; 
+    text-decoration:none;   
+}
+
+.gameCanvas {
+    position: absolute;
+    z-index: -100;
+}
+
+.pageContent {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+.btnContainer {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    margin: 1rem;
+    justify-content: center;
+    align-items: center;
+    /* padding-top: 25rem; */
+}
+
+
+.btnContainer button {
+    width: auto;
+    min-width: 15%;
+    background-color: #f7e5ad;
+    font-size: 2rem;
+    margin: 2rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border-color:#000000;
+    transition: transform .2s;
+    pointer-events: auto;
+}
+
+.btnContainer button a {
+    color: #000000;
+}
+
+.btnContainer button:hover {
+    transform: scale(1.2);
+    cursor:pointer; 
+}
+
+.btnContainer input {
+    /* height: 45%; */
+    font-size: 2rem;
+    cursor: text;
+    z-index: 1000;
+    pointer-events: auto;
+    margin: 1.5rem;
+}
+
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    width: 80%;
+    font-size: 2rem;
+    z-index: 100;
+}
+
+.textContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.textContent form, input, select {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1vw;
+}
+
+.textContent p {
+    font-size: 1vw;
+    max-width: 65%;
+}
+
+.consentForm {
+    display: flex;
+    flex-direction: column;
+    max-width: 50%;
+    min-width: 20%;
+    padding-top: 2%;
+    /* padding-bottom: 5%; */
+    /* padding-top: 5%; */
+}
+
+.consentForm select {
+    min-width: 75%;
+    padding: 2%;
+}
+
+.formLabel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: 60%;
+    max-width: 75%;
+    padding-right: 2rem;
+    align-items: center;
+    padding-bottom: 1rem;
+}
+
+canvas {
+    z-index: -1;
+}
+
+button, input {
+    z-index: 10;
+}
+
+form {
+    position: relative;
+}
+
+.endLabel {
+
+}
+
+.endTA {
+    margin-left: 2rem;
+}
+
+#submitBtn {
+    max-width: 50%;
+    min-height: 25%;
+    margin-left: 35%;
+    height: 5rem;
+    margin-top: 2.5%;
+    min-width: 15%;
+}
+
+.showForm {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15%;
+    visibility: hidden;
+}
+
+.showForm p {
+    justify-content: center;
+    margin-bottom: 5%;
+    min-width: 100%;
+}

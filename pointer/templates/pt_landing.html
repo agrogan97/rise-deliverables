@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'pointer/css/landing.css' %}">
+        <script src="{% static 'pointer/js/lib/matterJS/matter.js' %}"></script>
+        <script src="{% static 'pointer/js/lib/p5/p5.js' %}"></script>
+        <script src="{% static 'pointer/js/lib/lodash/lodashCore.js' %}"></script>
+        <script src="{% static 'pointer/js/lib/js-cookie/js.cookie.min.js' %}"></script>
+        <script>var IP_BASE = '{{ IP_BASE }}'</script>
+        <script src="{% static 'pointer/js/components/Game.js' %}"></script>
+        <script src="{% static 'pointer/js/components/PImage.js' %}"></script>
+        <script src="{% static 'pointer/js/src/landing.js' %}"></script>
+    </head>
+
+    <title>Pointer!</title>
+    <body>
+        
+        <div class="pageContent">
+            <div id="gameCanvas" class="gameCanvas">
+                <!-- Canvas inserted via JavaScript -->
+            </div>
+            <div class="btnContainer">
+                <button id="toTutorial"><a>Single Player</a></button>
+            </div>
+        </div>
+    </body>
+    
+</html>

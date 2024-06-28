@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'pointer/css/design.css' %}">
+    <script src="{% static 'pointer/js/lib/js-cookie/js.cookie.min.js' %}"></script>
+</head>
+<body>
+    <!-- What do we want this to be able to do> -->
+    <!-- We want to set target, distractorA, and distractorB -->
+    <!-- Within each of these we need id, concept, [connections], [decoys] -->
+    <!-- Then we want to pass save this and pass it to the game, then allow for play and replay, and finally confimation -->
+    <h1>Graph Design</h1>
+    <hr>
+    <div class="content">
+        <div class="instructions">
+            <h3>Instructions</h3>
+            <p>
+                Graphs can be built from config files, which are stored as JSON in the database.
+                There are 6 fields in the config:
+            </p>
+                <li>target</li>
+                <li>distractorA</li>
+                <li>distractorB</li>
+                <li>start</li>
+                <li>end</li>
+                <li>scores</li>
+            
+                
+            <p>The first 3 fields are lists of nodes in the path. Each node has properties. The properties are:</p>
+            <li>id - A unique ID for this node: typically `path_type``node_number`, eg: distractorA path, node 1: `da1`, or target path, node3: `t3`</li>
+            <li>concept - Which concept to apply to this node. This is one of `A`, `B`, `C`, `D`, `start`, `end`, or `N` (Neutral, or None)</li>
+            <li>connections - a list of IDs that this node is connected to</li>
+            <li>decoys - a list of booleans (as true/false) of whether this path is a decoy or not [isDecoy=true]. Used as decoy paths have edges rendered in a different style.</li>
+
+            <p>The start and end fields are dicts with the fields connections (an array of connected node IDs) and decoys (boolean of if it's a decoy path) - typically start and end nodes wouldn't have any decoys.</p>
+            <p>Finally, the scores field is a dict of the traversal cost of each of the target, distractorA, and distractorB paths.</p>
+
+            <h3>Creation</h3>
+            <p>Configs can be created by using the adjacent form, or by uploading JSON files with the following format:</p>
+
+            <code>
+                config = {<br>
+                    &nbsp;&nbsp;&nbsp;id : __uuid__,<br>
+                    &nbsp;&nbsp;&nbsp;conceptLevel: __level__,<br>
+                    &nbsp;&nbsp;&nbsp;strategyLevel: __level__,<br>
+                    &nbsp;&nbsp;&nbsp;targetScore: __score__,<br>
+                    &nbsp;&nbsp;&nbsp;target: [<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{id_t_node1, concept, [connections], [decoys]},<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{...}
+                    ],<br>
+                    &nbsp;&nbsp;&nbsp;distractorA: [<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{id_da_node1, concept, [connections], [decoys]},<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{...}
+                    ],<br>
+                    &nbsp;&nbsp;&nbsp;distractorB: [<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{id_db_node1, concept, [connections], [decoys]},<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{...}
+                    ],<br>
+                    &nbsp;&nbsp;&nbsp;start: {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connections: ['id_t_node1', 'id_da_node1', 'id_db_node1'],<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;decoys: [false, false, false]
+                    },<br>
+                    &nbsp;&nbsp;&nbsp;end: {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connections: ['id_t_node1', 'id_da_node1', 'id_db_node1'],<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;decoys: [false, false, false]<br>
+                        &nbsp;&nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;&nbsp;scores: {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;target: 0,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;distractorA: 0,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;distractorB: 0 <br>
+                        &nbsp;&nbsp;&nbsp;}<br>
+                }
+            </code>
+        </div>
+
+        <div class="selections" enctype="multipart/form-data">
+            <h3>Create Level</h3>
+            <form id="jsonForm" method="post" action="">
+                <label id="uploadJsonLabel" for="configFile">Upload JSON:</label>
+                <p id="jsonUploadError" style="color:red; font-size: medium;"></p>
+                <input type="file" id="configFile" name="filename">
+                <input type="submit" value="submit" id="submitBtn">
+            </form>
+
+            <form action="">
+                <label for="configFile">Copy JSON as text [not done yet]:</label>
+                <input type="text" id="configText" name="configText">
+                <input type="submit" value="submit" disabled>
+            </form>
+        </div>
+    </div>
+
+    <script>var IP_BASE = '{{ IP_BASE }}'</script>
+    <script type="text/javascript" style="display:none;">
+        document.getElementById("jsonForm").addEventListener("submit", function(e){
+            e.preventDefault()
+            let data = {}
+            let inp = document.getElementById("configFile")
+            var reader = new FileReader()
+            reader.readAsText(inp.files[0], 'UTF-8')
+            reader.onload = function(e){
+                // console.log(e.target.result)
+                data = e.target.result
+                fetch(`${IP_BASE}pointer/design/json/`, {
+                    method: "POST",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type' : 'application/json',
+                        'X-CSRFToken': Cookies.get('csrftoken'),
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(res => {
+                    if (res.status == 200){
+                        document.getElementById("uploadJsonLabel").innerHTML = `Upload JSON: Got code ${res.status} -- uploaded successfully!`
+                        document.getElementById("jsonForm").reset()
+                        console.log(res.status)
+                        return res
+                    }
+                    else {
+                        // let dd = res.json()
+                        document.getElementById("uploadJsonLabel").innerHTML = `Upload JSON: Got code ${res.status} -- error in uploading, check below for details.`
+                        document.getElementById("jsonForm").reset()
+                        console.log(res)
+                        return res
+                    }
+                })
+                .then(res => {
+                    let resJ = res.json()
+                    console.log(resJ)
+                    if (resJ != undefined && res.status != 200) document.getElementById("jsonUploadError").innerHTML = resJ
+                })
+            }            
+        })
+    </script>
+
+</body>
+</html>

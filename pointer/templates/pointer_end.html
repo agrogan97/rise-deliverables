@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+        METAPARAMS = {
+            IP:"{{ IP_BASE }}",
+            BASEPATH: "static/pointer/",
+            ENV: "production"
+        }
+        </script>
+        <link rel="stylesheet" href="{% static 'pointer/css/end.css' %}">
+        <!-- <script src="{% static 'pointer/js/lib/matterJS/matter.js' %}"></script> -->
+        <script src="{% static 'pointer/js/lib/jquery/jquery-1.11.0.min.js' %}"></script>
+        <script src="{% static 'pointer/js/lib/lodash/lodashCore.js' %}"></script>
+        <script src="{% static 'pointer/js/lib/js-cookie/js.cookie.min.js' %}"></script>
+        <!-- <script>var IP_BASE = '{{ IP_BASE }}'</script> -->
+        <script src="{% static 'pointer/js/components/Game.js' %}"></script>
+    </head>
+
+    <title>Pointer!</title>
+    <body>
+        <div class="textContent" id="textContent">
+            <h3 id="allDone"><b>All done!</b></h3>
+            <p id ="participating">Thank you for participating!</p>
+            <p id="prolificCode"></p>
+            <!-- <p>You can now close the window.</p> -->
+            <div class="showForm" id="showForm">
+                <p>Before you go, we would like to ask you some questions about how you experienced the task.</p>
+                <form class="debriefForm" id="debriefForm" onsubmit="return false">
+                    <div class="formLabel">
+                        <label class="endLabel" for="inputA">What did you learn about the images used in the game?</label>
+                        <textArea class="endTA" id="inputA" name="inputA" required></textArea>
+                    </div>
+                    <div class="formLabel">
+                        <label class="endLabel" for="inputB">Did you notice something change during the game?</label>
+                        <textArea class="endTA" id="inputB" name="inputB" required></textArea>
+                    </div>
+                    <div class="formLabel">
+                        <label class="endLabel" for="inputC">Is there anything else you would like to share with us? E.g. did you take notes during the study?</label>
+                        <textArea class="endTA" id="inputC" name="inputC" required></textArea>
+                    </div>
+                    <br><br>
+                <input id="submitBtn" type ="submit" value="Submit">
+            </div>
+            
+        </div>
+
+        
+        <!-- <div class="btnContainer">
+            <button id="nextButton" disabled>Continue</button>
+        </div> -->
+    </body>
+
+    <script>
+        let query = (new URL(window.location.href)).searchParams;
+        if (query.get("ki") == true || query.get("ki") == "true"){
+            // document.getElementById("prolificCode").innerHTML = "Your Prolific code is: <b> 2B8CD331</b>"
+            document.getElementById("showForm").style.visibility = "visible";
+        } else {
+            document.getElementById("allDone").innerHTML = "FULLSCREEN ERROR DETECTED"
+            document.getElementById("prolificCode").innerHTML = "If there was a technical error, let us know at oxgames@psy.ox.ac.uk!"
+            
+            document.getElementById("participating").innerHTML = "Your browser has been resized. Hence, the experiment has been cancelled."
+            
+        }
+    </script>
+
+    <script>
+        let responses = {"responses" : []}
+        document.getElementById("debriefForm").addEventListener("submit", (e) => {
+            e.preventDefault()
+            let formData = new FormData(e.target)
+            responses.responses.push(formData.get("inputA"))
+            responses.responses.push(formData.get("inputB"))
+            responses.responses.push(orfmData.get("inputC"))
+            let sbm = document.getElementById("submitBtn")
+            sbm.setAttribute("disabled", "")
+            let query = (new URL(window.location.href)).searchParams;
+            let uid = query.get("id") || undefined
+            let res = fetch(`${METAPARAMS.IP}pointer/debrief/${uid}/`, {
+                method: "POST",
+                headers: {
+                'X-CSRFToken': Cookies.get('csrftoken'),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json' 
+            },
+            body: JSON.stringify(responses)
+            })
+            res.then(r => {
+                sbm.value = "Thank you!"
+                document.getElementById("inputA").value = "";
+                document.getElementById("inputB").value = "";
+                document.getElementById("inputC").value = "";
+                console.log(responses)
+                document.getElementById("showForm").style.visibility = "hidden" 
+                document.getElementById("participating").innerHTML = "Thank you for participating! <br> <br> Your completion code is <b>2B8CD331</b>. <br><br> You may now close this window."
+            })            
+        })
+
+    </script>
+
+    <!-- <script src="{% static 'pointer/js/src/tutorial.js' %}"></script> -->
+    
+</html>

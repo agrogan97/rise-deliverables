@@ -1,0 +1,166 @@
+
+<!-- Page for loading data and getting a summary of content -->
+<!-- Not particularly used, quite inefficient and low-priority for fixing -->
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>Effugium</title>
+</head>
+<body>
+    {% load static %}
+</body>
+  
+    <!-- SCRIPTS -->
+    <script type="text/javascript">window.CSRF_TOKEN = "{{ csrf_token }}";</script>
+    <script>
+        METAPARAMS = {
+            RISEIP: "",
+            LOCALIP: "http://127.0.0.1:8000",
+            OXIP: "212.71.232.125",
+            IP:"http://127.0.0.1:8000",
+            BASEPATH: "/static/effugium/"
+        }
+    </script>
+
+    <script type="application/javascript" src="{% static 'effugium/js/lib/external/jquery-1.11.0.min.js' %}" ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="{% static 'effugium/css/rise_styles.css' %}" rel="stylesheet" type="text/css" media="screen" />
+    <link href="{% static 'effugium/css/getDataStyles.css' %}" rel="stylesheet" type="text/css" media="screen" />
+
+    <div class="screenBox">
+        <!-- TITLE -->
+        <div class="headingBox">
+            <!-- With RISE logo in the top left and Effugium title in the centre -->
+            <div class="effugiumLogoDiv">
+                <h1 class="effugiumLogo"><i>Roomworld</i></h1>
+                <h4 class="subHeading">Filter Data</h4>
+            </div>
+        </div>
+
+        <!-- BODY -->
+
+        <div class="splitScreen">
+            <!-- DOWNLOAD CONTENT -->
+            <div class="bodyBox">
+                <h4 class="mainText">
+                    <i>Use the options below to filter data and file type.</i>
+                </h4>
+                <div class="filterArray">
+    
+                    <div class="dropdown">
+                        <select id="population" class="newDropdown">
+                            <option value="" selected disabled hidden>Population</option>
+                            <option value="rise" class="dropdownList">RISE</option>
+                            <option value="prolific" class="dropdownList" disabled>Prolific</option>
+                            <option value="all" class="dropdownList" disabled>all</option>
+                        </select>
+                    </div>
+    
+                    <div class="dropdown">
+                        <select id="timescale" class="newDropdown">
+                            <option value="" selected disabled hidden>Timescale</option>
+                            <option value="1day" class="dropdownList" disabled>24 hrs</option>
+                            <option value="1week" class="dropdownList" disabled>1 Week</option>
+                            <option value="all" class="dropdownList">All Time</option>
+                        </select>
+                    </div>
+    
+                    <div class="dropdown">
+                        <select id="datatype" class="newDropdown">
+                            <option value="" selected disabled hidden>Type</option>
+                            <option value="round" class="dropdownList">Round</option>
+                            <option value="response" class="dropdownList">Response</option>
+                            <!-- <option value="both" class="dropdownList">Both</option> -->
+                        </select>
+                    </div>
+
+                    <div class="dropdown">
+                        <select id="isComplete" class="newDropdown">
+                            <option value="" selected disabled hidden>isComplete</option>
+                            <option value="complete" class="dropdownList">Completed</option>
+                            <option value="all" class="dropdownList">All</option>
+                            <!-- <option value="both" class="dropdownList">Both</option> -->
+                        </select>
+                    </div>
+                </div>
+                <div class="btnDiv">
+                    <button class="buttonBox"
+                            type="button"
+                            id="downloadBtn"><b><i>Create Data</i></b>
+                    </button> 
+                </div>
+                <div class="center">
+                    <p class="mainTextSm" id="confirmationText"></p>
+                </div>
+                
+            </div>
+            <!-- SUMMARY CONTENT -->
+            <div class="summaryBox">
+                <h1 class="mainText summaryHeader"><b><i>Summary</i></b></h1>
+                <div class="summaryTable">
+                    <p class="summaryItem"># of participants: {{ numPlayers }}</p>
+                    <p class="summaryItem">% Completed: {{ pctComplete }}%</p>
+                    <p class="summaryItem"># Completed: {{ numComplete }}</p>
+                    <p class="summaryItem">Other data:</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
+    <script>
+        // Functionality:
+        // Click button -> Send JSON of search parameters to django -> query DB -> format as type given (default csv)
+        //      -> return file to client -> Inititiate download
+
+        $('#downloadBtn').click(function() {
+            let params = {
+                "population" : $("#population").val(),
+                "timescale" : $("#timescale").val(),
+                "datatype" : $("#datatype").val(),
+                "isComplete" : $("#isComplete").val(),
+            }
+            if (params.population === null || params.timescale === null || params.datatype === null || params.completed === null){
+                alert("Please select a parameter from each of the filter options.")
+            } else {
+                console.log(params)
+                // Ajax request
+                $.ajax({
+                    type: "POST",
+                    url: `http://127.0.0.1:8000/effugium/queryDB/`,
+                    data: {
+                        "csrfmiddlewaretoken" : window.CSRF_TOKEN,
+                        "population" : $("#population").val(),
+                        "timescale" : $("#timescale").val(),
+                        "datatype" : $("#datatype").val(),
+                        "isComplete" : $("#isComplete").val(),
+                    },
+                    success: (data, success, xhr) => {
+                        // Returns file for download
+                        console.log("Success")
+                        console.log(data)
+                        document.getElementById("confirmationText").innerHTML = data
+                        // download(data, `${Date.now().toString()}_${$("#datatype").val()}_effugium.txt`, 'text/plain');
+                    },
+                    failure: (e, xhr) => {
+                        console.log(`Failed with status ${xhr.status}`)
+                    }
+                })
+
+            }
+        })
+
+        function download(content, fileName, contentType) {
+            var a = document.createElement("a");
+            var file = new Blob([content], {type: contentType});
+            a.href = URL.createObjectURL(file);
+            a.download = fileName;
+            a.click();
+        }
+    </script>
+
+    

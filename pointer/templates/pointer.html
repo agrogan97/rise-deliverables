@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        METAPARAMS = {
+            IP:"{{ IP_BASE }}",
+            BASEPATH: "static/pointer/",
+            ENV: "production"
+        }
+    </script>
+    <link rel="stylesheet" href="{% static 'pointer/css/game.css' %}">
+    <script src="{% static 'pointer/js/lib/p5/p5.js' %}"></script>
+    <script src="{% static 'pointer/js/lib/lodash/lodashCore.js' %}"></script>
+    <script src="{% static 'pointer/js/lib/js-cookie/js.cookie.min.js' %}"></script>
+    <script>var IP_BASE = '{{ IP_BASE }}'</script>
+    <script src="{% static 'pointer/js/components/Player.js' %}"></script>
+    <script src="{% static 'pointer/js/components/Stages.js' %}"></script>
+    <script src="{% static 'pointer/js/components/Game.js' %}"></script>
+    <script src="{% static 'pointer/js/components/PImage.js' %}"></script>
+    <script src="{% static 'pointer/js/components/ProgressBar.js' %}"></script>
+    <script src="{% static 'pointer/js/components/Graph.js' %}"></script>
+    <script src="{% static 'pointer/js/components/GNode.js' %}"></script>
+    <script src="{% static 'pointer/js/components/screen.js' %}"></script>
+    <script src="{% static 'pointer/js/src/game.js' %}"></script>
+
+    
+    <title>Pointer!</title>
+</head>
+<body>
+    <div class="pageContent">
+        <div id="gameCanvas" class="gameCanvas">
+            <!-- Canvas inserted via JavaScript -->
+        </div>
+    </div>
+</body>
+<script>var csrftoken = '{{ csrf_token }}'</script>
+
+</html>

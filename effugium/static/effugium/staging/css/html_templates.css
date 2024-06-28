@@ -1,0 +1,137 @@
+span.titleSpan  { display:inline-block; vertical-align:middle; line-height:50px }
+
+select {
+    padding:        3px;
+    margin:         0;
+    border-radius:  4px;
+    box-shadow:     0 3px 0 #ccc, 0 -1px #fff inset;
+    background:     #f8f8f8;
+    color:          #888;
+    border:         none;
+    outline:        none;
+    display:        inline-block;
+    cursor:         pointer;
+}
+
+div.screenBox{
+  background-image:      url(/static/effugium/staging/imgs/background.png);
+
+  position:              absolute;
+  height:                100%;
+  width:                 100%;
+  top:                   0%;
+  left:                  0%;
+}
+
+div.RPMBox{
+  background-image:      url(../png/white.png);
+
+  position:              relative;
+  height:                100%;
+  width:                 100%;
+  top:                   0%;
+  left:                  0%;
+}
+
+div.titleBox{
+  position:              absolute;
+  height:                50px;
+  width:                 100%;
+  top:                   100px;
+  left:                  0px;
+  margin-top:            -25px;
+  margin-left:           0px;
+
+  color:                 #777;
+  text-align:            center;
+  font-family:           "Calibri";
+  font-size:             32px;
+  font-weight:           bold;
+}
+
+div.bodyBox{
+  background:            #fff;
+
+  position:              absolute;
+  top:                   150px;
+  bottom:                150px;
+  left:                  10%;
+  right:                 10%;
+  padding:               40px 80px 40px 80px;
+
+  color:                 #444;
+  text-align:            justify;
+  font-size:             18px;
+  font-family:           "Calibri";
+  font-weight:           normal;
+  overflow-y:            scroll;
+  overflow-x:            hidden;
+
+  border-radius:         20px;
+  box-shadow:            0px 0px 10px rgba(0,0,0, .65);
+}
+
+div.taskBox{
+  background:            #fff;
+
+  position:              absolute;
+  top:                   150px;
+  bottom:                150px;
+  left:                  10%;
+  right:                 10%;
+  padding:               40px 80px 40px 80px;
+
+  color:                 #444;
+  text-align:            justify;
+  font-size:             18px;
+  font-family:           "Calibri";
+  font-weight:           normal;
+  overflow: hidden;
+
+  border-radius:         20px;
+  box-shadow:            0px 0px 10px rgba(0,0,0, .65);
+}
+
+button.buttonBox{
+  background-color:      rgba(249,167,50,1);
+  border-color:          rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+
+  position:              absolute;
+  bottom:                100px;
+  right:                 10%;
+  margin-bottom:         -25px;
+  margin-right:          50px;
+
+  color:#fff;
+  text-shadow:           0 -1px 0 rgba(0,0,0,0.25);
+  text-align:            center;
+  font-family:           "Calibri";
+  font-size:             18px;
+  font-weight:           bold;
+
+  border-radius:         3px;
+}
+button.buttonBox[disabled]{
+  background-color:      rgba(249,167,50,0.5);
+  border-color:          rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+
+  position:              absolute;
+  bottom:                100px;
+  right:                 10%;
+  margin-bottom:         -25px;
+  margin-right:          50px;
+
+  color:#fff;
+  text-shadow:           0 -1px 0 rgba(0,0,0,0.25);
+  text-align:            center;
+  font-family:           "Calibri";
+  font-size:             18px;
+  font-weight:           bold;
+
+  border-radius:         3px;
+}
+
+button.fullscreenBox{
+  margin-right:          115px;
+}
+

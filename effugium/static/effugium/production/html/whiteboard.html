@@ -1,0 +1,72 @@
+
+<!-- LOADING -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+  </head>
+  <body>
+    <div class="screenBox">
+      <div class="titleBox"><span class="titleSpan"> WHITEBOARD </span></div>
+      <div class="bodyBox"></div>
+      
+    </div>
+  </body>
+</html>
+
+<link href="../lib/css/html_templates.css" rel="stylesheet" type="text/css" media="screen" />
+
+<!-- SCRIPTS -->
+<script type="application/javascript" src="../lib/js/external/jquery-1.11.0.min.js" ></script>
+<script type="application/javascript" src="../lib/js/external/jwerty.js"            ></script>
+<script type="application/javascript" src="../lib/js/external/raphael.js"           ></script>
+<script type="application/javascript" src="../lib/js/external/sprintf.min.js"       ></script>
+
+<script type="application/javascript" src="../lib/js/default/log.js"                ></script>
+<script type="application/javascript" src="../lib/js/default/missing.js"            ></script>
+<script type="application/javascript" src="../lib/js/default/subjects.js"           ></script>
+<script type="application/javascript" src="../lib/js/default/text.js"               ></script>
+<script type="application/javascript" src="../lib/js/default/time.js"               ></script>
+<script type="application/javascript" src="../lib/js/default/web.js"                ></script>
+
+<script type="application/javascript" src="../lib/js/control/clock.js"              ></script>
+<script type="application/javascript" src="../lib/js/control/countdown.js"          ></script>
+<script type="application/javascript" src="../lib/js/control/screen.js"             ></script>
+
+<script type="application/javascript" src="../lib/js/graphics/basic.js"             ></script>
+<script type="application/javascript" src="../lib/js/graphics/fixation.js"          ></script>
+<script type="application/javascript" src="../lib/js/graphics/squircles.js"         ></script>
+
+<script type="application/javascript" src="../lib/js/matlab/command.js"             ></script>
+<script type="application/javascript" src="../lib/js/matlab/constants.js"           ></script>
+<script type="application/javascript" src="../lib/js/matlab/create.js"              ></script>
+<script type="application/javascript" src="../lib/js/matlab/normal.js"              ></script>
+<script type="application/javascript" src="../lib/js/matlab/operator1vi.js"         ></script>
+<script type="application/javascript" src="../lib/js/matlab/operator1vv.js"         ></script>
+<script type="application/javascript" src="../lib/js/matlab/operator2vi.js"         ></script>
+<script type="application/javascript" src="../lib/js/matlab/operator2vv.js"         ></script>
+<script type="application/javascript" src="../lib/js/matlab/random.js"              ></script>
+<script type="application/javascript" src="../lib/js/matlab/size.js"                ></script>
+<script type="application/javascript" src="../lib/js/matlab/translate.js"           ></script>
+<script type="application/javascript" src="../lib/js/matlab/vector.js"              ></script>
+
+<script type="text/javascript">
+  board = {};
+  // fonts
+  board.font_bigsize   = 20;
+  board.font_medsize   = 15;
+  board.font_tinysize  = 12;
+  // paper (paper)
+  board.paper = {};
+  board.paper.width  = window.innerWidth;
+  board.paper.height = window.innerHeight;
+  board.paper.centre = [0.5*window.innerWidth , 0.5*window.innerHeight];
+  board.paper.rect   = [
+                        0,
+                        0,
+                        board.paper.width,
+                        board.paper.height
+                       ];
+  board.paper.object = drawPaper(board.paper.rect);
+  </script>

@@ -1,0 +1,138 @@
+.splitScreen {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.summaryBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* align-items: center; */
+    width: 100%;
+    font-size: 1.5vh;
+    font-family: 'Montserrat', sans-serif;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    border-radius: 0.5vw;
+    border: none;
+}
+
+.bodyBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainText {
+    font-size: 3vh;
+    font-family: 'Montserrat', sans-serif;
+    padding: 1%;
+}
+
+.mainTextSm {
+    font-size: 1.5vh;
+    font-family: 'Montserrat', sans-serif;
+    padding: 1%;
+}
+
+.filterArray {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.dropdown {
+    /* Button div */
+    display: flex;
+    justify-content: center;
+    position: relative;
+    /* min-width: 6vw; */
+    height: 6vw;
+    min-width: 12vw;
+    padding: 2vw;
+    color: #2b4169;
+}
+
+.newDropdown {
+    background-color: #ffcb04;
+    color: #2b4169;
+    font-size: 1.75vw;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 0.5vw;
+    border: none;
+    width: 100%;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.dropdownList {
+    font-weight: bold;
+}
+
+.btnDiv {
+    display: flex;
+    justify-content: center;
+    height: 6vw;
+    padding-top: 1vh;
+}
+
+.centre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirmTextDiv {
+    width: 100%;
+    display: flex;
+    justify-content: center;;
+}
+
+.buttonBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 100%;
+    height: 100%;
+    background-color: #ffcb04;
+    color: #2b4169;
+    font-size: 2vw;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 0.5vw;
+    border: none;
+}
+
+.summaryTable {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    width: 80%;
+    background-color: #ffcb04;
+    border-radius: 0.5vw;
+    border: none;
+    margin-top: 2.75vh;
+}
+
+.summaryItem {
+    background-color: #ffcb04;
+    color: #2b4169;
+    font-size: 1.5vw;
+    font-family: 'Montserrat', sans-serif;
+    padding: 1vw;
+    font-weight: bold;
+    font-style: italic;
+    transition: 0.3s;
+}
+
+.summaryItem:hover {
+    color: #ffcb04;
+    background-color: #2b4169;
+    transform: scale(1.1);
+}
+
+.summaryHeader {
+    margin: 5%;
+}

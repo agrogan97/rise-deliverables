@@ -1,0 +1,54 @@
+
+<!-- LOADING -->
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>Effugium</title>
+</head>
+<body>
+    {% load static %}
+</body>
+  
+    <!-- SCRIPTS -->
+    <script>var csrftoken = '{{ csrf_token }}'</script>
+    <script>
+        METAPARAMS = {
+            IP:"{{ IP_BASE }}",
+            BASEPATH: "static/effugium/V2/",
+            ENV: "staging"
+        }
+    </script>
+    <script type="application/javascript" src="{% static 'effugium/V2/js/lib/jquery-1.11.0.min.js' %}"></script>
+    <script type="application/javascript" src="{% static 'effugium/V2/js/lib/raphael.js' %}"></script>
+    <script type="application/javascript" src="{% static 'effugium/V2/js/lib/cookie.min.js' %}"></script>
+    <script type="application/javascript" src="{% static 'effugium/V2/js/lib/lodash.js' %}"></script>
+
+    <script type="application/javascript" src="{% static 'effugium/V2/js/utils/Game.js' %}"></script>
+    <script type="application/javascript" src="{% static 'effugium/V2/js/utils/Player.js' %}"></script>
+    <script type="application/javascript" src="{% static 'effugium/V2/js/rendering/draw.js' %}"></script>
+    <script type="application/javascript" src="{% static 'effugium/V2/js/rendering/move.js' %}"></script>
+    <script type="application/javascript" src="{% static 'effugium/V2/js/utils/Stages.js' %}"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="{% static 'effugium/V2/css/rise_styles.css' %}" rel="stylesheet" type="text/css" media="screen" />
+
+    <script>
+        document.write('\
+        <!DOCTYPE html>\
+        <html>\
+            <head>\
+            <title></title>\
+            </head>\
+            <body>\
+                <div id="bodyDiv"></div>\
+            </body>\
+        </html>\
+        ');
+    </script>
+
+    <script type="application/javascript" src="{% static 'effugium/V2/js/game.js' %}"></script>
+
+    
