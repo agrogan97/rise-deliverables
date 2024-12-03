@@ -4,3 +4,4 @@ Consists of:
 
 - Roomworld (Effugium)
 - Pointer
+- Analyses
